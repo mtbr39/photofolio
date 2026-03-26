@@ -25,7 +25,7 @@ class Me extends React.Component {
             <GatsbyImage
               className={styles.topImage}
               alt=""
-              image={profileImage.gatsbyImageData}
+              image={profileImage.localFile.childImageSharp.gatsbyImageData}
               imgStyle={{ objectFit: 'contain' }}
             />
             <h2>Yasuhiro Ono</h2>
@@ -80,7 +80,11 @@ export const pageQuery = graphql`
       edges {
         node {
           profileImage {
-            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+            localFile {
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+              }
+            }
           }
         }
       }

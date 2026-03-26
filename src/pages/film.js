@@ -57,10 +57,14 @@ export const pageQuery = graphql`
           publishDate(formatString: "YYYY MMMM")
           camera
           photos {
-            gatsbyImageData(
-              layout: FULL_WIDTH
-              placeholder: DOMINANT_COLOR
-            )
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  layout: FULL_WIDTH
+                  placeholder: DOMINANT_COLOR
+                )
+              }
+            }
           }
         }
       }

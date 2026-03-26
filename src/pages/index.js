@@ -13,7 +13,7 @@ class RootIndex extends React.Component {
 
     const aboutContent = get(this, 'props.data.allContentfulAbout.edges')
     const indexRandom = Math.floor( Math.random() * aboutContent[0]['node']['topImages'].length )
-    const imageSrc = aboutContent[0]['node']['topImages'][indexRandom]['gatsbyImageData']['images']['fallback']['src']
+    const imageSrc = aboutContent[0]['node']['topImages'][indexRandom]['localFile']['childImageSharp']['gatsbyImageData']['images']['fallback']['src']
 
     return (
       <div>
@@ -44,7 +44,11 @@ export const pageQuery = graphql`
       edges {
         node {
           topImages {
-            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+            localFile {
+              childImageSharp {
+                gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+              }
+            }
           }
         }
       }

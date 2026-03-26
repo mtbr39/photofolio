@@ -63,12 +63,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             slug
             publishDate(formatString: "MMMM Do, YYYY")
             photos {
-              gatsbyImageData(
-                layout: FULL_WIDTH
-                placeholder: DOMINANT_COLOR
-                width: 1920
-                height: 1920
-              )
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    layout: FULL_WIDTH
+                    placeholder: DOMINANT_COLOR
+                    width: 1920
+                    height: 1920
+                  )
+                }
+              }
             }
           }
         }
@@ -105,7 +109,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           publishDate: post.publishDate,
           previousPostSlug,
           nextPostSlug,
-          photos: post.photos,
+          photos: post.photos.map(photo => ({
+            gatsbyImageData: photo.localFile.childImageSharp.gatsbyImageData,
+          })),
         },
       })
     })

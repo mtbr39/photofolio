@@ -1,6 +1,7 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
+require('dotenv').config({ override: false })
 
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
@@ -49,7 +50,10 @@ module.exports = {
     'mini-css-extract-plugin',
     {
       resolve: 'gatsby-source-contentful',
-      options: contentfulConfig,
+      options: {
+        ...contentfulConfig,
+        downloadLocal: true,
+      },
     },
     // {
     //   resolve: `gatsby-plugin-env-variables`,

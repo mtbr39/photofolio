@@ -20,7 +20,7 @@ export default ({ article, articleNumber }) => (
             <GatsbyImage
               className=""
               alt=""
-              image={article.photos[0].gatsbyImageData}
+              image={article.photos[0].localFile.childImageSharp.gatsbyImageData}
               style={{ height: '100%', width: '100%' }}
               imgStyle={{ objectFit: 'contain' }}
             />
